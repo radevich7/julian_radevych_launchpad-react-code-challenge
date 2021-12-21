@@ -1,0 +1,44 @@
+.navbar-light .navbar-brand {
+  color: rgb(50, 33, 83);
+  font-weight: 600;
+  font-size: 3.2rem;
+}
+.company_logo span {
+  color: #00f2a9;
+}
+.navbar-light .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(50,33,83, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.custom-toggler.navbar-toggler {
+  border-color: #322153;
+}
+.nav_link {
+  color: #00f2a9;
+  font-weight: 600;
+  font-size: 1.8rem;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 15px 35px;
+}
+.nav_link:hover,
+.nav_link:active {
+  color: #322153;
+}
+.about_link {
+  color: #322153;
+  text-decoration: none;
+}
+
+.navbar {
+  background-color: white;
+}
+.navbar_onScroll {
+  box-shadow: 0 0 22px -4px rgb(0 0 0 / 17%);
+  position: fixed;
+  width: 100%;
+  transition: 0.35s all cubic-bezier(0.65, 0.05, 0.36, 1);
+}
+p {
+  color: white;
+}

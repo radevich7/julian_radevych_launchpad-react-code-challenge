@@ -1,0 +1,18 @@
+/* CSS FOR ALL OF THE REUSEABLE COMPONENTS */
+.button_main {
+  border: none;
+  color: #322153;
+  background-color: #00f2a9;
+  font-weight: 600;
+  font-size: 1.8rem;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 15px 30px;
+  border-radius: 25px;
+}
+.button_main:hover {
+  color: white;
+  background-color: #08ce95;
+  transition: 0.2s all ease-in-out;
+  border-radius: 25px;
+}
