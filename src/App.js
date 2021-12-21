@@ -1,7 +1,11 @@
-import react from "react";
-
+import "./index.css";
+import Posts from "./Components/Posts/Posts";
 function App() {
-  return <div></div>;
+  return (
+    <div>
+      <Posts />
+    </div>
+  );
 }
 
 export default App;
