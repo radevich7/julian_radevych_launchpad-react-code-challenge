@@ -32,6 +32,7 @@
 
 .navbar {
   background-color: white;
+  position: static;
 }
 .navbar_onScroll {
   box-shadow: 0 0 22px -4px rgb(0 0 0 / 17%);
