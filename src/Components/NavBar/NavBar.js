@@ -14,7 +14,7 @@ import ReusableButton from "../../ReusableComponents/ReusableButton";
 
 const NavBar = () => {
   const [scroll, setScroll] = useState(false);
-  console.log(window.scrollY);
+  // Scroll effect for NAV BAR
   useEffect(() => {
     window.addEventListener("scroll", () => {
       setScroll(window.scrollY > 38);
@@ -27,7 +27,6 @@ const NavBar = () => {
       className={`pt-4 pb-4 ${scroll ? "navbar_onScroll " : ""}`}
       light
       container={"xl"}
-      id="nav"
     >
       <NavbarBrand href="/" className="company_logo">
         C<span>o</span>dingF<span>o</span>rL<span>i</span>fe
