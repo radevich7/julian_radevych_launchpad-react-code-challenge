@@ -1,3 +1,20 @@
+/* First ROW HEADING */
+.row_posts {
+  height: 100%;
+  background-image: url("../../assets/svg/waves1.svg");
+  background-position: center;
+  background-size: cover;
+}
+.img_col {
+  background-image: url("../../assets/svg/rocket.svg");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  width: 420px;
+  height: 420px;
+}
+
 .title_1 {
   color: #322153;
   font-weight: 800;
@@ -7,4 +24,18 @@
   font-size: 3.2rem;
   color: #16d69c;
   font-weight: 700;
+}
+.row_postCard {
+  margin-top: 120px;
+}
+/* THIRD ROW ABOUT SECTION */
+.about_section {
+  /* height: 30vh; */
+  margin: 80px 0;
+}
+.aboutSection_paragraph {
+  color: #16d69c;
+  margin-right: 70px;
+  font-size: 1.8rem;
+  font-weight: 800;
 }
