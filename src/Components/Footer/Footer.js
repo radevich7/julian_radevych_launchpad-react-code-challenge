@@ -32,6 +32,9 @@ const Footer = () => {
               <NavLink href="#" className="footer_link">
                 Universities
               </NavLink>
+              <NavLink href="#" className="footer_link">
+                Postal Lookup
+              </NavLink>
 
               <NavLink href="#" disabled className="footer_link">
                 FAQ

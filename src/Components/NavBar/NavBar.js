@@ -17,7 +17,7 @@ const NavBar = () => {
   // Scroll effect for NAV BAR
   useEffect(() => {
     window.addEventListener("scroll", () => {
-      setScroll(window.scrollY > 38);
+      setScroll(window.scrollY > 2);
     });
   }, []);
 

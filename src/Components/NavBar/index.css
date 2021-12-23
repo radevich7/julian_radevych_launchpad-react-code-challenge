@@ -35,9 +35,9 @@
   position: static;
 }
 .navbar_onScroll {
+  transition: 0.35s all cubic-bezier(0.65, 0.05, 0.36, 1);
   box-shadow: 0 0 22px -4px rgb(0 0 0 / 17%);
   position: fixed;
   width: 100%;
-  transition: 0.35s all cubic-bezier(0.65, 0.05, 0.36, 1);
   z-index: 10;
 }
