@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import Footer from "./Components/Footer/Footer";
 import NavBar from "./Components/NavBar/NavBar";
+import PostalLookUp from "./Components/PostalLookUp/PostalLookUp";
 import Posts from "./Components/Posts/Posts";
 import Universities from "./Components/Universities/Universities";
 export const Layout = (props) => {
@@ -16,7 +17,8 @@ export const Layout = (props) => {
 function App() {
   return (
     <Layout>
-      <Universities />
+      <PostalLookUp />
+      {/* <Universities /> */}
       {/* <Posts /> */}
     </Layout>
   );

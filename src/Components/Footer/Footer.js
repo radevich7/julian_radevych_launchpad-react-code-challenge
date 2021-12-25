@@ -50,9 +50,7 @@ const Footer = () => {
             </p>
             <InputGroup>
               <Input type="email" className="footer_input" />
-              <ReusableButton style={"footer_button"}>
-                To the Right!
-              </ReusableButton>
+              <ReusableButton style={"footer_button"}>Connect</ReusableButton>
             </InputGroup>
           </Col>
         </Row>

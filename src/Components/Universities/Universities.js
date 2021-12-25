@@ -183,7 +183,7 @@ const Universities = () => {
           </Card>
         </Col>
         <ReusableButton style={"showMore_button mt-5 mb-5"}>
-          Show More Colleges
+          Show More Colleges ...
         </ReusableButton>
       </Row>
       <Row>

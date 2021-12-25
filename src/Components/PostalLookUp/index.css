@@ -1,0 +1,47 @@
+.postal_container {
+  padding-top: 100px;
+  height: 100vh;
+}
+.postal_img {
+  background-image: url("../../assets/svg/usaMap.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100%;
+  width: 100%;
+  opacity: 0.1;
+  position: absolute;
+  top: 200px;
+}
+.postal_inputGroup {
+  width: 300px;
+  height: 40px;
+  margin: 0 auto;
+}
+.postal_button {
+  width: 50px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.postal_button span {
+  color: #322153;
+}
+.postal_input {
+  border: 1.5px solid #322153;
+}
+.postal_text {
+  color: #322153;
+  text-align: center;
+}
+.postal_map {
+  /* width: 100%; */
+  /* height: 60vh; */
+  border: 1px solid black;
+  margin-top: 40px;
+}
+
+.leaflet-container {
+  width: 100%;
+  height: 400px;
+}
