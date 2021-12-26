@@ -14,7 +14,7 @@
   border-color: #322153;
 }
 .nav_link {
-  color: #00f2a9;
+  color: #322153;
   font-weight: 600;
   font-size: 1.8rem;
   cursor: pointer;
@@ -33,11 +33,4 @@
 .navbar {
   background-color: white;
   position: static;
-}
-.navbar_onScroll {
-  box-shadow: 0 0 22px -4px rgb(0 0 0 / 17%);
-  position: fixed;
-  width: 100%;
-  transition: 0.35s all cubic-bezier(0.65, 0.05, 0.36, 1);
-  z-index: 10000;
 }

@@ -1,16 +1,18 @@
 import { Fragment } from "react";
 import Footer from "./Components/Footer/Footer";
 import NavBar from "./Components/NavBar/NavBar";
-
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import PostalLookUp from "./Components/PostalLookUp/PostalLookUp";
 import Posts from "./Components/Posts/Posts";
 import Universities from "./Components/Universities/Universities";
 export const Layout = (props) => {
   return (
     <Fragment>
-      <NavBar />
-      {props.children}
-      <Footer />
+      <BrowserRouter>
+        <NavBar />
+        {props.children}
+        <Footer />
+      </BrowserRouter>
     </Fragment>
   );
 };
@@ -18,9 +20,12 @@ export const Layout = (props) => {
 function App() {
   return (
     <Layout>
-      <PostalLookUp />
-      <Universities />
-      <Posts />
+      <Switch>
+        <Route path="/" exact component={Posts} />
+        <Route path="/universities" exact component={Universities} />
+        <Route path="/postal" exact component={PostalLookUp} />
+        {/* <Route path="*" component={NotFound} /> */}
+      </Switch>
     </Layout>
   );
 }

@@ -10,7 +10,6 @@ import {
 } from "reactstrap";
 import "./index.css";
 // Components
-import ReusableButton from "../../ReusableComponents/ReusableButton";
 
 const NavBar = () => {
   const [scroll, setScroll] = useState(false);
@@ -21,6 +20,14 @@ const NavBar = () => {
     });
   }, []);
 
+  const scrollWithOffset = (el, offset) => {
+    const elementPosition = el.offsetTop - offset;
+    window.scroll({
+      top: elementPosition,
+      left: 0,
+      behavior: "smooth",
+    });
+  };
   return (
     <Navbar
       expand="lg"
@@ -35,24 +42,19 @@ const NavBar = () => {
       <Collapse navbar className="flex-grow-0">
         <Nav className="me-auto align-items-center" navbar>
           <NavItem>
-            <a href="/components/" className="nav_link about_link">
-              About
-            </a>
+            <Link to="/" className="nav_link">
+              Posts
+            </Link>
           </NavItem>
           <NavItem>
-            <a href="#" className="nav_link">
-              Home
-            </a>
-          </NavItem>
-          <NavItem>
-            <a href="#" className="nav_link">
+            <Link to="/universities" className="nav_link">
               Universities
-            </a>
+            </Link>
           </NavItem>
           <NavItem>
-            <ReusableButton href="#" className="nav_link">
+            <Link to="/postal" className="button_main">
               Postal Lookup
-            </ReusableButton>
+            </Link>
           </NavItem>
         </Nav>
       </Collapse>

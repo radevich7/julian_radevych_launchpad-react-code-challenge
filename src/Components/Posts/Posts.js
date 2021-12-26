@@ -50,7 +50,7 @@ const Posts = () => {
         <PostCard />
         <PostCard evenStyle={"even"} />
       </Row>
-      <Row className="about_section">
+      <Row className="about_section" id="about">
         <Col className="col-4 d-flex align-items-center">
           <p className="aboutSection_paragraph">
             24h nisl est, efficitur id turpis dapibus, imperdiet tincidunt quam
@@ -58,7 +58,7 @@ const Posts = () => {
           </p>
         </Col>
         <Col>
-          <h1 className="title_1">About us </h1>
+          <h1 className="title_1">About us</h1>
           <p className="posts_paragraph">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
             ultricies blandit euismod. Pellentesque tincidunt bibendum quam
