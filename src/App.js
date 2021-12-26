@@ -17,9 +17,9 @@ export const Layout = (props) => {
 function App() {
   return (
     <Layout>
-      <PostalLookUp />
+      {/* <PostalLookUp /> */}
       {/* <Universities /> */}
-      {/* <Posts /> */}
+      <Posts />
     </Layout>
   );
 }

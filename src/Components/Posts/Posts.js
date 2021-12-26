@@ -3,14 +3,16 @@ import { useSpring, animated } from "react-spring";
 import { Container, Row, Col, CardGroup } from "reactstrap";
 import PostCard from "../../ReusableComponents/Card";
 import ReusableButton from "../../ReusableComponents/ReusableButton";
-
+import ReusableModal from "../../ReusableComponents/ReusableModal";
 import "./index.css";
 
 const Posts = () => {
-  const [toggle, setToggle] = useState(false);
+  const [open, setOpen] = useState(false);
+  const toggle = () => setOpen(!open);
 
   return (
     <Container className="container-xl pt-5 ">
+      <ReusableModal toggle={toggle} isOpen={open} />
       <Row className="row_posts align-items-center">
         <Col className="">
           <h2 className="title_2">Create, update and delete posts 24h</h2>
@@ -22,8 +24,11 @@ const Posts = () => {
         </Col>
         <Col className="img_col rocket_img"></Col>
       </Row>
+
       <Row className="row_postCard align-items-center position-relative justify-content-center flex-wrap">
-        <ReusableButton style={"addPost_button"}>Add new post</ReusableButton>
+        <ReusableButton style={"addPost_button"} onClick={toggle}>
+          Add new post
+        </ReusableButton>
         <PostCard />
         <PostCard evenStyle={"even"} />
         <PostCard />
