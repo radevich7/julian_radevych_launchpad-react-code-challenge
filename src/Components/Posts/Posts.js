@@ -1,19 +1,54 @@
-import { useState } from "react";
-import { useSpring, animated } from "react-spring";
+import { useState, useEffect } from "react";
 import { Container, Row, Col, CardGroup } from "reactstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
 import PostCard from "../../ReusableComponents/Card";
-import Notification from "../../ReusableComponents/Notification";
 import ReusableButton from "../../ReusableComponents/ReusableButton";
 import ReusableModal from "../../ReusableComponents/ReusableModal";
+import { getPosts } from "../../store/postsSlice.js";
 import "./index.css";
+
+import "react-toastify/dist/ReactToastify.css";
+
+import "react-toastify/dist/ReactToastify.css";
 
 const Posts = () => {
   const [open, setOpen] = useState(false);
   const toggle = () => setOpen(!open);
+  const [modalType, setModalType] = useState("add");
+  const [choosenPost, setChoosenPost] = useState(null);
+  const dispatch = useDispatch();
+  const { posts } = useSelector((state) => state.posts);
+
+  // Fetch posts data
+  useEffect(() => {
+    let apiCall = dispatch(getPosts());
+  }, []);
+  // Add new post functionality
+  const addPostHandler = () => {
+    toggle();
+  };
+  const updatePostHandler = (post) => {
+    setChoosenPost(post);
+    setModalType("update");
+    toggle();
+  };
+  const deletePostHandler = (post) => {
+    setChoosenPost(post);
+    setModalType("delete");
+    toggle();
+  };
+  // console.log(posts);
 
   return (
     <Container className="container-xl pt-5 ">
-      <ReusableModal toggle={toggle} isOpen={open} />
+      <ToastContainer />
+      <ReusableModal
+        toggle={toggle}
+        type={modalType}
+        isOpen={open}
+        post={choosenPost}
+      />
       <Row className="row_posts align-items-center">
         <Col className="">
           <h2 className="title_2">Create, update and delete posts 24h</h2>
@@ -27,29 +62,21 @@ const Posts = () => {
       </Row>
 
       <Row className="row_postCard align-items-center position-relative justify-content-center flex-wrap">
-        <ReusableButton style={"addPost_button"} onClick={toggle}>
+        <ReusableButton style={"addPost_button"} onClick={addPostHandler}>
           Add new post
         </ReusableButton>
-        <PostCard />
-        <PostCard evenStyle={"even"} />
-        <PostCard />
-        <PostCard evenStyle={"even"} />
-        <PostCard />
-        <PostCard evenStyle={"even"} />
-        <PostCard />
-        <PostCard evenStyle={"even"} />
-        <PostCard />
-        <PostCard evenStyle={"even"} />
-        <PostCard />
-        <PostCard evenStyle={"even"} />
-        <PostCard />
-        <PostCard evenStyle={"even"} />
-        <PostCard />
-        <PostCard evenStyle={"even"} />
-        <PostCard />
-        <PostCard evenStyle={"even"} />
-        <PostCard />
-        <PostCard evenStyle={"even"} />
+        {posts.map((post) => (
+          <PostCard
+            evenStyle={post.id % 2 === 0 ? "even" : ""}
+            key={post.id}
+            id={post.id}
+            title={post.title}
+            body={post.body}
+            userId={post.userId}
+            update={updatePostHandler}
+            delete={deletePostHandler}
+          />
+        ))}
       </Row>
       <Row className="about_section" id="about">
         <Col className="col-4 d-flex align-items-center">

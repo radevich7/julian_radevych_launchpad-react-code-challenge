@@ -23,7 +23,7 @@
 /* CARD */
 .posts_card {
   width: 230px;
-  height: 230px;
+  height: 200px;
   overflow: scroll;
   border: none;
   box-shadow: 0px 0px 11px 4px rgba(0, 0, 0, 0.05);
@@ -80,7 +80,7 @@
 
 /* MODAL CSS */
 .modal-content {
-  height: 500px;
+  height: 600px;
   border-radius: 15px;
 }
 .modal-body {
