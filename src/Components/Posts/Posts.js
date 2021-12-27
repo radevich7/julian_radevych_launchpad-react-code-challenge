@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useSpring, animated } from "react-spring";
 import { Container, Row, Col, CardGroup } from "reactstrap";
 import PostCard from "../../ReusableComponents/Card";
+import Notification from "../../ReusableComponents/Notification";
 import ReusableButton from "../../ReusableComponents/ReusableButton";
 import ReusableModal from "../../ReusableComponents/ReusableModal";
 import "./index.css";
