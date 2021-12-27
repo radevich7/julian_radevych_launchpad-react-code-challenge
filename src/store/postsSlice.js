@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 const GET_URL = "https://jsonplaceholder.typicode.com/posts?_start=0&_limit=20";
 const POST_URL = "https://jsonplaceholder.typicode.com/posts";
+const PUT_URL = "https://jsonplaceholder.typicode.com/posts/";
 
 // Get ALL POSTS
 export const getPosts = createAsyncThunk("posts/getPosts", async (thunkAPI) => {
@@ -23,6 +24,24 @@ export const addPost = createAsyncThunk("posts/addPost", async (newPost) => {
   }).then((data) => data.json());
   return { id: res.id, ...newPost };
 });
+
+// Update POST
+export const updatePost = createAsyncThunk(
+  "posts/updatePost",
+  async (updatedPost) => {
+    console.log(updatedPost);
+    const res = await fetch(`${PUT_URL}${updatedPost.id}`, {
+      method: "PUT",
+      header: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        updatedPost,
+      }),
+    }).then((data) => data.json());
+    return updatedPost;
+  }
+);
 
 // SLICE
 const initialState = {
@@ -50,7 +69,22 @@ const postsSlice = createSlice({
     },
     [addPost.rejected]: (state) => {
       toast.error(
-        "There was an error to add a new post, please contact customer service  999-999-999"
+        "There was an error to update a post, please contact customer service  999-999-999"
+      );
+    },
+    // UPDATE  POST
+    [updatePost.fulfilled]: (state, { payload }) => {
+      toast.success("You have successfully updated a post");
+      //Locate existing post
+      const existingPost = state.posts.find((post) => post.id === payload.id);
+      //Change values
+      existingPost.userId = payload.userId;
+      existingPost.title = payload.title;
+      existingPost.body = payload.body;
+    },
+    [updatePost.rejected]: (state) => {
+      toast.error(
+        "There was an error to update post, please contact customer service  999-999-999"
       );
     },
   },

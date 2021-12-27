@@ -15,7 +15,7 @@ import "react-toastify/dist/ReactToastify.css";
 const Posts = () => {
   const [open, setOpen] = useState(false);
   const toggle = () => setOpen(!open);
-  const [modalType, setModalType] = useState("add");
+  const [modalType, setModalType] = useState();
   const [choosenPost, setChoosenPost] = useState(null);
   const dispatch = useDispatch();
   const { posts } = useSelector((state) => state.posts);
@@ -26,6 +26,7 @@ const Posts = () => {
   }, []);
   // Add new post functionality
   const addPostHandler = () => {
+    setModalType("add");
     toggle();
   };
   const updatePostHandler = (post) => {
