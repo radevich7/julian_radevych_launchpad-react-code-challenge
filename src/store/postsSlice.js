@@ -24,7 +24,7 @@ export const addPost = createAsyncThunk("posts/addPost", async (newPost) => {
       newPost,
     }),
   }).then((data) => data.json());
-  return { id: res.id, ...newPost };
+  return { ...newPost };
 });
 
 // Update POST

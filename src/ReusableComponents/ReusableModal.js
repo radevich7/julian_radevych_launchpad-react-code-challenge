@@ -4,6 +4,7 @@ import ReusableButton from "./ReusableButton";
 import { useDispatch } from "react-redux";
 import { addPost, deletePost, updatePost } from "../store/postsSlice";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const ReusableModal = (props) => {
   const dispatch = useDispatch();
@@ -11,7 +12,7 @@ const ReusableModal = (props) => {
   const [title, setTitle] = useState();
   const [body, setBody] = useState();
   const { type, toggle, isOpen, post } = props;
-
+  const { posts } = useSelector((state) => state.posts);
   // Add new post
   const addNewPostHandler = (e) => {
     e.preventDefault();
@@ -19,6 +20,7 @@ const ReusableModal = (props) => {
       userId: +userId,
       title,
       body,
+      id: posts.length + 1,
     };
     dispatch(addPost(newPost));
     toggle();
@@ -44,6 +46,12 @@ const ReusableModal = (props) => {
     toggle();
   };
 
+  // Cancel, close modal
+  const cancelHandler = (e) => {
+    e.preventDefault();
+    toggle();
+  };
+
   return (
     <Modal centered fullscreen="md" size="lg" toggle={toggle} isOpen={isOpen}>
       <ModalBody>
@@ -56,13 +64,15 @@ const ReusableModal = (props) => {
           post
         </h1>
         {type !== "delete" && (
-          <Form>
+          <Form
+            onSubmit={type === "add" ? addNewPostHandler : updatePostHandler}
+          >
             <Label>User id</Label>
             <Input
               type="number"
               className="w-100 post_titleInput"
-              placeholder="Please enter your user id"
-              min={0}
+              placeholder="Please enter your user id (0-100)"
+              min={1}
               max={100}
               defaultValue={type === "update" && post.userId}
               required
@@ -88,29 +98,28 @@ const ReusableModal = (props) => {
               required
               onChange={(e) => setBody(e.target.value)}
             />
+            <div className="d-flex justify-content-evenly pt-5">
+              <ReusableButton style={"cancel_button"} onClick={cancelHandler}>
+                Cancel
+              </ReusableButton>
+              {type === "add" && (
+                <ReusableButton style={"add_button"}>Add</ReusableButton>
+              )}
+              {type === "update" && (
+                <ReusableButton style={"add_button"}>Update</ReusableButton>
+              )}
+              {type === "delete" && (
+                <ReusableButton
+                  style={"add_button"}
+                  onClick={deletePostHandler}
+                >
+                  Confirm
+                </ReusableButton>
+              )}
+            </div>
           </Form>
         )}
       </ModalBody>
-      <ModalFooter className="justify-content-evenly">
-        <ReusableButton style={"cancel_button"} onClick={() => props.toggle()}>
-          Cancel
-        </ReusableButton>
-        {type === "add" && (
-          <ReusableButton style={"add_button"} onClick={addNewPostHandler}>
-            Add
-          </ReusableButton>
-        )}
-        {type === "update" && (
-          <ReusableButton style={"add_button"} onClick={updatePostHandler}>
-            Update
-          </ReusableButton>
-        )}
-        {type === "delete" && (
-          <ReusableButton style={"add_button"} onClick={deletePostHandler}>
-            Confirm
-          </ReusableButton>
-        )}
-      </ModalFooter>
     </Modal>
   );
 };
