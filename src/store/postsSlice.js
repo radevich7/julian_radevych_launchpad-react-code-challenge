@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 const GET_URL = "https://jsonplaceholder.typicode.com/posts?_start=0&_limit=20";
 const POST_URL = "https://jsonplaceholder.typicode.com/posts";
 const PUT_URL = "https://jsonplaceholder.typicode.com/posts/";
+const DELETE_URL = "https://jsonplaceholder.typicode.com/posts/";
 
 // Get ALL POSTS
 export const getPosts = createAsyncThunk("posts/getPosts", async (thunkAPI) => {
@@ -40,6 +41,21 @@ export const updatePost = createAsyncThunk(
       }),
     }).then((data) => data.json());
     return updatedPost;
+  }
+);
+// Delete POST
+export const deletePost = createAsyncThunk(
+  "posts/deletePost",
+  async ({ id }) => {
+    console.log(id, "delete");
+    const res = await fetch(`${DELETE_URL}${id}`, {
+      method: "DELETE",
+      header: {
+        "Content-Type": "application/json",
+      },
+    }).then((data) => data.json());
+
+    return id;
   }
 );
 
@@ -85,6 +101,18 @@ const postsSlice = createSlice({
     [updatePost.rejected]: (state) => {
       toast.error(
         "There was an error to update post, please contact customer service  999-999-999"
+      );
+    },
+    // DELETE  POST
+    [deletePost.fulfilled]: (state, { payload }) => {
+      let idToDelete = payload;
+      state.posts = state.posts.filter((post) => post.id !== idToDelete);
+
+      toast.success(`You have successfully deleted a post id ${idToDelete}`);
+    },
+    [deletePost.rejected]: (state) => {
+      toast.error(
+        "There was an error to delete a post, please contact customer service  999-999-999"
       );
     },
   },
