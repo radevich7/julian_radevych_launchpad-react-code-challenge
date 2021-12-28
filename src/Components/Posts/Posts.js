@@ -13,7 +13,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "react-toastify/dist/ReactToastify.css";
 
 const Posts = () => {
-  const [searchInputValue, setSearchInputValue] = useState();
+  const [searchInputValue, setSearchInputValue] = useState("");
   const [searchVisible, setSearchVisible] = useState(false);
   const searchToggle = () => setSearchVisible(!searchVisible);
   const [open, setOpen] = useState(false);
