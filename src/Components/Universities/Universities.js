@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./index.css";
 import {
   Container,
@@ -9,24 +11,64 @@ import {
   Col,
   CardBody,
   CardTitle,
-  CardSubtitle,
   CardText,
   Card,
+  Table,
 } from "reactstrap";
 import CapAnimation from "../../animation/CapAnimation";
-import { useState } from "react/cjs/react.development";
+
 import Hamburger from "../../assets/svg/Hamburger";
 import ReusableButton from "../../ReusableComponents/ReusableButton";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import Tips from "./Tips";
+import { getCountries } from "../../store/universitiesSlice";
+
+//   Get flag emoji
+export const getFlagEmoji = (countryCode) =>
+  String.fromCodePoint(
+    ...[...countryCode.toUpperCase()].map((x) => 0x1f1a5 + x.charCodeAt())
+  );
+
+// Component
 const Universities = () => {
   const [open, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!open);
-  //   Get flag emoji
-  const getFlagEmoji = (countryCode) =>
-    String.fromCodePoint(
-      ...[...countryCode.toUpperCase()].map((x) => 0x1f1a5 + x.charCodeAt())
-    );
+  const dispatch = useDispatch();
+  useEffect(() => {
+    // dispatch(getCountries());
+  }, []);
+  // Connect to the store values
+  // const countries = useSelector((state) => state.universities.countries);
+  const universities = useSelector((state) => state.universities.universities);
+  let countries = [
+    { DZ: "Algeria" },
+    { AO: "Angola" },
+    { BJ: "Benin" },
+    { DZ: "Algeasdria" },
+    { AO: "Anasdsgola" },
+    { BJ: "Benaasdsain" },
+    { DZ: "Aria" },
+    { AO: "Anasdsgola" },
+    { BJ: "Benaasn" },
+    { DZ: "Algeria" },
+    { AO: "Angola" },
+    { BJ: "Benin" },
+    { DZ: "Algeasdria" },
+    { AO: "Anasdsgola" },
+    { BJ: "Benaasdsain" },
+    { DZ: "Aria" },
+    { AO: "Anasdsgola" },
+    { BJ: "Benaasn" },
+    { DZ: "Algeria" },
+    { AO: "Angola" },
+    { BJ: "Benin" },
+    { DZ: "Algeasdria" },
+    { AO: "Anasdsgola" },
+    { BJ: "Benaasdsain" },
+    { DZ: "Aria" },
+    { AO: "Anasdsgola" },
+    { BJ: "Benaasn" },
+  ];
 
   return (
     <Container className="container-xl pt-5 ">
@@ -43,57 +85,30 @@ const Universities = () => {
             <Hamburger open={open} />
           </DropdownToggle>
           <DropdownMenu className="dropDown_menu">
-            <Row>
-              <Col>
-                <DropdownItem>
-                  Canada <span className="flag"> {getFlagEmoji("ca")}</span>
-                </DropdownItem>
-                <DropdownItem>
-                  Ukraine<span className="flag"> {getFlagEmoji("ua")}</span>
-                </DropdownItem>
-                <DropdownItem>USA</DropdownItem>
-                <DropdownItem>Mexico</DropdownItem>
-                <DropdownItem>Mexico</DropdownItem>
-              </Col>
-              <Col>
-                <DropdownItem>
-                  Canada <span className="flag"> {getFlagEmoji("ca")}</span>
-                </DropdownItem>
-                <DropdownItem>
-                  Ukraine<span className="flag"> {getFlagEmoji("ua")}</span>
-                </DropdownItem>
-                <DropdownItem>USA</DropdownItem>
-                <DropdownItem>Mexico</DropdownItem>
-                <DropdownItem>Mexico</DropdownItem>
-              </Col>
-              <Col>
-                <DropdownItem>
-                  Canada <span className="flag"> {getFlagEmoji("ca")}</span>
-                </DropdownItem>
-                <DropdownItem>
-                  Ukraine<span className="flag"> {getFlagEmoji("ua")}</span>
-                </DropdownItem>
-                <DropdownItem>USA</DropdownItem>
-                <DropdownItem>Mexico</DropdownItem>
-                <DropdownItem>Mexico</DropdownItem>
-              </Col>
-              <Col>
-                <DropdownItem>
-                  Canada <span className="flag"> {getFlagEmoji("ca")}</span>
-                </DropdownItem>
-                <DropdownItem>
-                  Ukraine<span className="flag"> {getFlagEmoji("ua")}</span>
-                </DropdownItem>
-                <DropdownItem>USA</DropdownItem>
-                <DropdownItem>Mexico</DropdownItem>
-                <DropdownItem>Mexico</DropdownItem>
-              </Col>
-            </Row>
+            <Table responsive>
+              <tbody>
+                {countries &&
+                  countries.map((country) => (
+                    <tr key={countries.indexOf(country)} className="col">
+                      <th>
+                        <DropdownItem className="position-relative">
+                          {[...Object.values(country)]}
+                          <span className="flag">
+                            {" "}
+                            {getFlagEmoji(...Object.keys(country))}
+                          </span>
+                        </DropdownItem>
+                      </th>
+                    </tr>
+                  ))}
+              </tbody>
+            </Table>
           </DropdownMenu>
         </Dropdown>
       </Row>
       <Row className="choice_section d-flex justify-content-center mb-5">
         {/* <span className="choosen_countryFlag">{getFlagEmoji("ua")}</span> */}
+
         <Col className="mb-3">
           <Card className="universities_card">
             <CardBody className="d-flex flex-column justify-content-around align-items-center">
@@ -105,87 +120,10 @@ const Universities = () => {
             </CardBody>
           </Card>
         </Col>
-        <Col className="mb-3">
-          <Card className="universities_card">
-            <CardBody className="d-flex flex-column justify-content-around align-items-center">
-              <CardTitle tag="h5" className="universities_title">
-                University of Toronto
-              </CardTitle>
-
-              <CardText>web:'http://www.acadiau.ca/"'</CardText>
-            </CardBody>
-          </Card>
-        </Col>
-        <Col className="mb-3">
-          <Card className="universities_card">
-            <CardBody className="d-flex flex-column justify-content-around align-items-center">
-              <CardTitle tag="h5" className="universities_title">
-                University of Toronto
-              </CardTitle>
-
-              <CardText>web:'http://www.acadiau.ca/"'</CardText>
-            </CardBody>
-          </Card>
-        </Col>
-        <Col className="mb-3">
-          <Card className="universities_card">
-            <CardBody className="d-flex flex-column justify-content-around align-items-center">
-              <CardTitle tag="h5" className="universities_title">
-                University of Toronto
-              </CardTitle>
-
-              <CardText>web:'http://www.acadiau.ca/"'</CardText>
-            </CardBody>
-          </Card>
-        </Col>
-        <Col className="mb-3">
-          <Card className="universities_card">
-            <CardBody className="d-flex flex-column justify-content-around align-items-center">
-              <CardTitle tag="h5" className="universities_title">
-                University of Toronto
-              </CardTitle>
-
-              <CardText>web:'http://www.acadiau.ca/"'</CardText>
-            </CardBody>
-          </Card>
-        </Col>
-        <Col className="mb-3">
-          <Card className="universities_card">
-            <CardBody className="d-flex flex-column justify-content-around align-items-center">
-              <CardTitle tag="h5" className="universities_title">
-                University of Toronto
-              </CardTitle>
-
-              <CardText>web:'http://www.acadiau.ca/"'</CardText>
-            </CardBody>
-          </Card>
-        </Col>
-        <Col className="mb-3">
-          <Card className="universities_card">
-            <CardBody className="d-flex flex-column justify-content-around align-items-center">
-              <CardTitle tag="h5" className="universities_title">
-                University of Toronto
-              </CardTitle>
-
-              <CardText>web:'http://www.acadiau.ca/"'</CardText>
-            </CardBody>
-          </Card>
-        </Col>
-        <Col className="mb-3">
-          <Card className="universities_card">
-            <CardBody className="d-flex flex-column justify-content-around align-items-center">
-              <CardTitle tag="h5" className="universities_title">
-                University of Toronto
-              </CardTitle>
-
-              <CardText>web:'http://www.acadiau.ca/"'</CardText>
-            </CardBody>
-          </Card>
-        </Col>
-        <ReusableButton style={"showMore_button mt-5 mb-5"}>
-          Show More Colleges ...
-        </ReusableButton>
       </Row>
+      <ReusableButton style={"showMore_button mt-5 mb-5"}>
+        Show More Colleges ...
+      </ReusableButton>
       <Row>
         <Tips />
       </Row>

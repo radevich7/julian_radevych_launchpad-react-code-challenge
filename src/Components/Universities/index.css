@@ -24,11 +24,14 @@
 }
 .dropDown_menu {
   background-color: white;
-  transform: translate(220px, 0px) !important;
-
+  transform: translate(220px, -20px) !important;
+  height: 500px;
+  width: 250px;
+  overflow: auto;
   box-shadow: 0 1px 5px 0 rgb(0 0 0 / 20%), 0 2px 9px -1px rgb(0 0 0 / 0%),
     0 1px 1px 0 rgb(0 0 0 / 3%);
   border: none;
+  border-radius: 5px;
   padding: 20px;
 }
 .dropdown-item {
@@ -120,9 +123,12 @@
 .showMore_button {
   background-color: white;
   border: 1px solid #322153;
-  /* padding: 15px 100px; */
   margin: 0 auto;
+
   width: 25%;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 /* Tips section */
@@ -136,4 +142,8 @@
 
 .tips_section h2 {
   margin: 20px 0 10px 0;
+}
+.flag {
+  position: absolute;
+  right: 0;
 }
