@@ -1,18 +1,21 @@
 import { useState, useEffect } from "react";
-import { Container, Row, Col, CardGroup } from "reactstrap";
+import { Container, Row, Col, Form, Label, Input } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import PostCard from "../../ReusableComponents/Card";
 import ReusableButton from "../../ReusableComponents/ReusableButton";
 import ReusableModal from "../../ReusableComponents/ReusableModal";
-import { getPosts } from "../../store/postsSlice.js";
+import { getPosts, getPostById } from "../../store/postsSlice.js";
 import "./index.css";
-
+import { BsSearch, BsPlusCircle } from "react-icons/bs";
 import "react-toastify/dist/ReactToastify.css";
 
 import "react-toastify/dist/ReactToastify.css";
 
 const Posts = () => {
+  const [searchInputValue, setSearchInputValue] = useState();
+  const [searchVisible, setSearchVisible] = useState(false);
+  const searchToggle = () => setSearchVisible(!searchVisible);
   const [open, setOpen] = useState(false);
   const toggle = () => setOpen(!open);
   const [modalType, setModalType] = useState();
@@ -40,7 +43,18 @@ const Posts = () => {
     toggle();
   };
   // console.log(posts);
+  const searchHandler = (e) => {
+    e.preventDefault();
+    dispatch(getPostById({ id: searchInputValue }));
+    setSearchInputValue("");
+  };
+  const resetHandler = (e) => {
+    e.preventDefault();
+    dispatch(getPosts());
+    setSearchInputValue("");
+  };
 
+  console.log(searchInputValue);
   return (
     <Container className="container-xl pt-5 ">
       <ToastContainer />
@@ -63,21 +77,51 @@ const Posts = () => {
       </Row>
 
       <Row className="row_postCard align-items-center position-relative justify-content-center flex-wrap">
-        <ReusableButton style={"addPost_button"} onClick={addPostHandler}>
-          Add new post
-        </ReusableButton>
-        {posts.map((post) => (
-          <PostCard
-            evenStyle={post.id % 2 === 0 ? "even" : ""}
-            key={post.id}
-            id={post.id}
-            title={post.title}
-            body={post.body}
-            userId={post.userId}
-            update={updatePostHandler}
-            delete={deletePostHandler}
-          />
-        ))}
+        {searchVisible ? (
+          <Form className="search_inputForm d-flex" onSubmit={searchHandler}>
+            <Input
+              className="search_input"
+              id="exampleSearch"
+              name="search"
+              placeholder="Enter id (1-100)"
+              type="number"
+              min={1}
+              max={100}
+              value={searchInputValue}
+              onChange={(e) => setSearchInputValue(e.target.value)}
+              required
+            />
+            <ReusableButton style={"search_button"}>Search</ReusableButton>
+            <ReusableButton style={"reset_button"} onClick={resetHandler}>
+              Reset
+            </ReusableButton>
+          </Form>
+        ) : (
+          <ReusableButton style={"addPost_button"} onClick={addPostHandler}>
+            Add new post
+          </ReusableButton>
+        )}
+        {/* Set search visible and hide add button */}
+        <span className="toggle_search" onClick={searchToggle}>
+          {!searchVisible ? <BsSearch /> : <BsPlusCircle />}
+        </span>
+
+        {!posts ? (
+          <p>Loading</p>
+        ) : (
+          posts.map((post) => (
+            <PostCard
+              evenStyle={post.id % 2 === 0 ? "even" : ""}
+              key={post.id}
+              id={post.id}
+              title={post.title}
+              body={post.body}
+              userId={post.userId}
+              update={updatePostHandler}
+              delete={deletePostHandler}
+            />
+          ))
+        )}
       </Row>
       <Row className="about_section" id="about">
         <Col className="col-4 d-flex align-items-center">

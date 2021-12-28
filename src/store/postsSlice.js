@@ -4,6 +4,7 @@ const GET_URL = "https://jsonplaceholder.typicode.com/posts?_start=0&_limit=20";
 const POST_URL = "https://jsonplaceholder.typicode.com/posts";
 const PUT_URL = "https://jsonplaceholder.typicode.com/posts/";
 const DELETE_URL = "https://jsonplaceholder.typicode.com/posts/";
+const FILTER_URL = "https://jsonplaceholder.typicode.com/posts/";
 
 // Get ALL POSTS
 export const getPosts = createAsyncThunk("posts/getPosts", async (thunkAPI) => {
@@ -59,6 +60,15 @@ export const deletePost = createAsyncThunk(
   }
 );
 
+// Search post by id
+export const getPostById = createAsyncThunk(
+  "posts/getPostById",
+  async ({ id }) => {
+    const res = await fetch(`${FILTER_URL}${id}`).then((data) => data.json());
+    return res;
+  }
+);
+
 // SLICE
 const initialState = {
   posts: [],
@@ -108,11 +118,21 @@ const postsSlice = createSlice({
       let idToDelete = payload;
       state.posts = state.posts.filter((post) => post.id !== idToDelete);
 
-      toast.success(`You have successfully deleted a post id ${idToDelete}`);
+      toast.success(`You have successfully deleted a post id#${idToDelete}`);
     },
     [deletePost.rejected]: (state) => {
       toast.error(
         "There was an error to delete a post, please contact customer service  999-999-999"
+      );
+    },
+    // GET POST BY ID
+    [getPostById.fulfilled]: (state, { payload }) => {
+      toast.success("Filtered by id successfully");
+      state.posts = [payload];
+    },
+    [getPostById.rejected]: (state) => {
+      toast.error(
+        "There was an error to filter posts by id, please contact customer service  999-999-999"
       );
     },
   },
