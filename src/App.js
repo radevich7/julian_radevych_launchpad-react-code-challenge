@@ -1,11 +1,14 @@
 import { Fragment } from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+// Components
 import Footer from "./Components/Footer/Footer";
 import NavBar from "./Components/NavBar/NavBar";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
 import PostalLookUp from "./Components/PostalLookUp/PostalLookUp";
 import Posts from "./Components/Posts/Posts";
-import { ToastContainer, toast } from "react-toastify";
 import Universities from "./Components/Universities/Universities";
+
 export const Layout = (props) => {
   return (
     <Fragment>

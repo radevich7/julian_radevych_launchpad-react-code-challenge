@@ -168,6 +168,10 @@
   position: absolute;
   right: 40px;
   top: 30px;
+  cursor: pointer;
+}
+.form-check-input {
+  cursor: pointer;
 }
 .form-check-input:checked {
   background-color: #08ce95;

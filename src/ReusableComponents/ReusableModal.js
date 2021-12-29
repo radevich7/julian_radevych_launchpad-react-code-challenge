@@ -1,10 +1,9 @@
-import "./index.css";
-import { Modal, Form, ModalBody, ModalFooter, Label, Input } from "reactstrap";
-import ReusableButton from "./ReusableButton";
-import { useDispatch } from "react-redux";
-import { addPost, deletePost, updatePost } from "../store/postsSlice";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Modal, Form, ModalBody, Label, Input } from "reactstrap";
+import { addPost, deletePost, updatePost } from "../store/postsSlice";
+import "./index.css";
+import ReusableButton from "./ReusableButton";
 
 const ReusableModal = (props) => {
   const dispatch = useDispatch();

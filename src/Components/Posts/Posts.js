@@ -1,16 +1,14 @@
 import { useState, useEffect } from "react";
 import { Container, Row, Col, Form, Label, Input } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
-
-import PostCard from "../../ReusableComponents/Card";
-import ReusableButton from "../../ReusableComponents/ReusableButton";
-import ReusableModal from "../../ReusableComponents/ReusableModal";
 import { getPosts, getPostById } from "../../store/postsSlice.js";
 import "./index.css";
 import { BsSearch, BsPlusCircle } from "react-icons/bs";
 import "react-toastify/dist/ReactToastify.css";
-
-import "react-toastify/dist/ReactToastify.css";
+// Components
+import PostCard from "../../ReusableComponents/Card";
+import ReusableButton from "../../ReusableComponents/ReusableButton";
+import ReusableModal from "../../ReusableComponents/ReusableModal";
 
 const Posts = () => {
   const [searchInputValue, setSearchInputValue] = useState("");

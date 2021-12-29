@@ -10,10 +10,11 @@
   width: 100%;
   opacity: 0.1;
   position: absolute;
+  z-index: -2;
   top: 200px;
 }
 .postal_inputGroup {
-  width: 300px;
+  width: 410px;
   height: 40px;
   margin: 0 auto;
 }
@@ -29,19 +30,24 @@
 }
 .postal_input {
   border: 1.5px solid #322153;
+  font-size: 1.8rem;
 }
 .postal_text {
   color: #322153;
   text-align: center;
 }
 .postal_map {
-  /* width: 100%; */
-  /* height: 60vh; */
-  border: 1px solid black;
   margin-top: 40px;
 }
 
 .leaflet-container {
   width: 100%;
   height: 400px;
+}
+.address_section {
+  width: 30%;
+  color: #322153;
+}
+.address_section h1 {
+  color: #08ce95;
 }

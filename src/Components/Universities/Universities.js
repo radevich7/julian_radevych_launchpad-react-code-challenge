@@ -17,13 +17,9 @@ import {
 } from "reactstrap";
 import capImg from "../../assets/svg/cap.svg";
 import CapAnimation from "../../animation/CapAnimation";
-
 import Hamburger from "../../assets/svg/Hamburger";
-import ReusableButton from "../../ReusableComponents/ReusableButton";
-import { AiOutlineArrowRight } from "react-icons/ai";
 import Tips from "./Tips";
 import { getCountries, getUniversities } from "../../store/universitiesSlice";
-import { Link } from "react-router-dom";
 
 //   Get flag emoji
 export const getFlagEmoji = (countryCode) =>

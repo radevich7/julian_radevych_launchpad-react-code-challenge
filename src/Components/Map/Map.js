@@ -1,56 +1,66 @@
-import { useEffect } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import { useState } from "react/cjs/react.development";
+import { MapContainer, TileLayer } from "react-leaflet";
+import React from "react";
+import { useState, useCallback, useEffect, useMemo } from "react";
+import { useSelector } from "react-redux";
+import ReusableButton from "../../ReusableComponents/ReusableButton";
+const zoom = 14;
+function DisplayPosition({ map, center }) {
+  const [position, setPosition] = useState(map.getCenter());
+  // Get values from the store
+  const coordsSelector = useSelector((state) => state.postal.coords);
+  const showButton = useSelector((state) => state.postal.showButton);
+  // Show location on the click
+  const onClick = useCallback(() => {
+    map.setView(coordsSelector, zoom);
+  }, [map, coordsSelector]);
 
-const Map = () => {
-  const [userCoords, setUserCoords] = useState([51.049999, -114.066666]);
-  const [activeZip, setActiveZip] = useState(null);
-  //   {"post code": "19901", "country": "United States", "country abbreviation": "US", "places": [{"place name": "Dover", "longitude": "-75.4955", "state": "Delaware", "state abbreviation": "DE", "latitude": "39.1564"}]}
+  const onMove = useCallback(() => {
+    setPosition(map.getCenter());
+  }, [map]);
+
   useEffect(() => {
-    // if (navigator.geolocation) {
-    //   navigator.geolocation.watchPosition(function (position) {
-    //     setUserCoords([position.coords.latitude, position.coords.longitude]);
-    //   });
-    // }
-    // navigator.geolocation.getCurrentPosition((position) => {
-    //   if (position.coords.latitude && position.coords.longitude) {
-    //     setUserCoords([position.coords.latitude, position.coords.longitude]);
-    //   }
-    //   console.log("running");
-    // });
-  }, []);
-  // console.log(activeZip);
-  return (
-    <MapContainer center={userCoords} zoom={11} scrollWheelZoom={false}>
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      <Marker
-        key={1}
-        position={[51.049999, -114.066666]}
-        // eventHandlers={{
-        //   click: (e) => {
-        //     setActiveZip([51.049999, -114.066666]);
-        //   },
-        // }}
-        // onClick={() => {
-        //
-        //   console.log("running");
-        // }}
-      >
-        <Popup
-          position={[51.049999, -114.066666]}
-          onClose={() => {
-            setActiveZip(null);
-          }}
-        >
-          <h2>data about the marker</h2>
-          <p>description</p>
-        </Popup>
-      </Marker>
-    </MapContainer>
-  );
-};
+    map.on("move", onMove);
+    return () => {
+      map.off("move", onMove);
+    };
+  }, [map, onMove]);
 
-export default Map;
+  return (
+    <p>
+      {showButton && (
+        <ReusableButton onClick={onClick}>Show on map</ReusableButton>
+      )}
+    </p>
+  );
+}
+
+function OSMap(props) {
+  const [map, setMap] = useState(null);
+  const coordsSelector = useSelector((state) => state.postal.coords);
+
+  const displayMap = useMemo(
+    () => (
+      <MapContainer
+        center={coordsSelector}
+        zoom={zoom}
+        scrollWheelZoom={false}
+        whenCreated={setMap}
+      >
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+      </MapContainer>
+    ),
+    []
+  );
+
+  return (
+    <div>
+      {map ? <DisplayPosition map={map} /> : null}
+      {displayMap}
+    </div>
+  );
+}
+
+export default OSMap;
