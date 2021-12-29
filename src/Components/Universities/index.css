@@ -26,7 +26,6 @@
   background-color: white;
   transform: translate(220px, -20px) !important;
   height: 500px;
-  width: 250px;
   overflow: auto;
   box-shadow: 0 1px 5px 0 rgb(0 0 0 / 20%), 0 2px 9px -1px rgb(0 0 0 / 0%),
     0 1px 1px 0 rgb(0 0 0 / 3%);
@@ -36,6 +35,7 @@
 }
 .dropdown-item {
   font-size: 2.2rem;
+  text-align: center;
 }
 
 .dropdown-item:hover {
@@ -104,6 +104,14 @@
 /* Choice_sction */
 .choice_section {
   position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  padding: 15px 20px;
+  box-shadow: 0 1px 5px 0 rgb(0 0 0 / 20%), 0 2px 9px -1px rgb(0 0 0 / 0%),
+    0 1px 1px 0 rgb(0 0 0 / 3%);
 }
 
 .universities_card {
@@ -146,4 +154,36 @@
 .flag {
   position: absolute;
   right: 0;
+}
+.universities_text {
+  text-align: center;
+  font-size: 2.4rem;
+  font-weight: 600;
+  margin-top: 40px;
+}
+
+/* Cap switch */
+.cap_switch {
+  display: inline;
+  position: absolute;
+  right: 40px;
+  top: 30px;
+}
+.form-check-input:checked {
+  background-color: #08ce95;
+  border: brown;
+}
+.form-check-input:focus {
+  border-color: #89919c;
+  outline: 0;
+  box-shadow: none;
+}
+.spinner {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.spinner-border {
+  width: 4rem;
+  height: 4rem;
 }

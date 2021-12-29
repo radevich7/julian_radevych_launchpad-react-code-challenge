@@ -9,7 +9,6 @@ const GET_UNIVERSITIES_URL = "http://universities.hipolabs.com/search?country=";
 export const getCountries = createAsyncThunk(
   "universities/getCountries",
   async (thunkAPI) => {
-    console.log("running");
     const res = await fetch(GET_COUNTRIES_URL).then((data) => data.json());
 
     let data = Object.entries(res.data).map(([key, value]) => ({
@@ -22,10 +21,15 @@ export const getCountries = createAsyncThunk(
 // Get ALL UNIVERSITIES
 export const getUniversities = createAsyncThunk(
   "universities/getUniversities",
-  async ({ country }) => {
-    const res = await fetch(`${GET_UNIVERSITIES_URL}${country}`).then((data) =>
-      data.json()
-    );
+  async ({ countryValue }) => {
+    const res = await fetch(
+      `${GET_UNIVERSITIES_URL}${
+        //   checking if it inculdes brackets and slice it, otherwise the same value
+        countryValue.includes("(")
+          ? countryValue.slice(0, countryValue.indexOf("("))
+          : countryValue
+      }`
+    ).then((data) => data.json());
 
     return res;
   }
@@ -34,7 +38,7 @@ export const getUniversities = createAsyncThunk(
 // SLICE
 const initialState = {
   countries: [],
-  universities: [],
+  universities: null,
 };
 const universitiesSlice = createSlice({
   name: "universities",
@@ -43,7 +47,7 @@ const universitiesSlice = createSlice({
   extraReducers: {
     //   GET ALL COUNTRIES
     [getCountries.fulfilled]: (state, { payload }) => {
-      toast.success("Fetch data successfully");
+      toast.success("Fetch countries list successfully");
       state.countries = payload;
     },
     [getCountries.rejected]: (state) => {
@@ -53,7 +57,12 @@ const universitiesSlice = createSlice({
     },
     //   GET ALL UNIVERSITIES
     [getUniversities.fulfilled]: (state, { payload }) => {
-      toast.success("Fetch data successfully");
+      if (payload.length > 0) {
+        toast.success("Fetch universities list was successfull");
+      } else {
+        toast.error("Universities for the choosen country hasn't been located");
+      }
+
       state.universities = payload;
     },
     [getUniversities.rejected]: (state) => {

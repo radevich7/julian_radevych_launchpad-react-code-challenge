@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import {
   Container,
   Row,
@@ -21,24 +22,20 @@ const Footer = () => {
               C<span>o</span>dingF<span>o</span>rL<span>i</span>fe
             </div>
             <Nav vertical>
-              <NavLink href="#" className="footer_link">
-                About
-              </NavLink>
-
-              <NavLink href="#" className="footer_link">
+              <Link to="/" className="footer_link">
                 Home
-              </NavLink>
+              </Link>
 
-              <NavLink href="#" className="footer_link">
+              <Link to="/universities" className="footer_link">
                 Universities
-              </NavLink>
-              <NavLink href="#" className="footer_link">
+              </Link>
+              <Link to="postal" className="footer_link">
                 Postal Lookup
-              </NavLink>
+              </Link>
 
-              <NavLink href="#" disabled className="footer_link">
+              <Link to="#" className=" disabled_link">
                 FAQ
-              </NavLink>
+              </Link>
             </Nav>
           </Col>
           <Col>

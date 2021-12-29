@@ -2,32 +2,32 @@ import "./index.css";
 import capImg from "../assets/svg/cap.svg";
 const CapAnimation = () => {
   return (
-    <div class="snowflakes" aria-hidden="true">
-      <div class="snowflake">
+    <div className="snowflakes" aria-hidden="true">
+      <div className="snowflake">
         <img src={capImg} style={{ width: "50px" }} alt="" />
       </div>
-      <div class="snowflake">
+      <div className="snowflake">
         <img src={capImg} style={{ width: "50px" }} alt="" />
       </div>
-      <div class="snowflake">
+      <div className="snowflake">
         <img src={capImg} style={{ width: "50px" }} alt="" />
       </div>
-      <div class="snowflake">
+      <div className="snowflake">
         <img src={capImg} style={{ width: "50px" }} alt="" />
       </div>
-      <div class="snowflake">
+      <div className="snowflake">
         <img src={capImg} style={{ width: "50px" }} alt="" />
       </div>
-      <div class="snowflake">
+      <div className="snowflake">
         <img src={capImg} style={{ width: "50px" }} alt="" />
       </div>
-      <div class="snowflake">
+      <div className="snowflake">
         <img src={capImg} style={{ width: "50px" }} alt="" />
       </div>
-      <div class="snowflake">
+      <div className="snowflake">
         <img src={capImg} style={{ width: "50px" }} alt="" />
       </div>
-      <div class="snowflake">
+      <div className="snowflake">
         <img src={capImg} style={{ width: "50px" }} alt="" />
       </div>
     </div>

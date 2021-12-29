@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Container, Row, Col, Form, Label, Input } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
+
 import PostCard from "../../ReusableComponents/Card";
 import ReusableButton from "../../ReusableComponents/ReusableButton";
 import ReusableModal from "../../ReusableComponents/ReusableModal";
@@ -54,10 +54,8 @@ const Posts = () => {
     setSearchInputValue("");
   };
 
-  console.log(searchInputValue);
   return (
     <Container className="container-xl pt-5 ">
-      <ToastContainer />
       <ReusableModal
         toggle={toggle}
         type={modalType}

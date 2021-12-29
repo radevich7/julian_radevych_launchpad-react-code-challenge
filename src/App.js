@@ -4,6 +4,7 @@ import NavBar from "./Components/NavBar/NavBar";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import PostalLookUp from "./Components/PostalLookUp/PostalLookUp";
 import Posts from "./Components/Posts/Posts";
+import { ToastContainer, toast } from "react-toastify";
 import Universities from "./Components/Universities/Universities";
 export const Layout = (props) => {
   return (
@@ -20,6 +21,7 @@ export const Layout = (props) => {
 function App() {
   return (
     <Layout>
+      <ToastContainer />
       <Switch>
         <Route path="/" exact component={Posts} />
         <Route path="/universities" exact component={Universities} />

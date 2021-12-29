@@ -35,3 +35,11 @@
   bottom: 0;
   text-align: center;
 }
+.disabled_link {
+  cursor: auto;
+  color: white;
+  margin-top: 10px;
+}
+.disabled_link:hover {
+  color: white;
+}

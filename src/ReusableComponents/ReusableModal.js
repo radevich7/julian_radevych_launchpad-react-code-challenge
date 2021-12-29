@@ -51,6 +51,7 @@ const ReusableModal = (props) => {
     e.preventDefault();
     toggle();
   };
+  console.log(type);
 
   return (
     <Modal centered fullscreen="md" size="lg" toggle={toggle} isOpen={isOpen}>
@@ -108,16 +109,18 @@ const ReusableModal = (props) => {
               {type === "update" && (
                 <ReusableButton style={"add_button"}>Update</ReusableButton>
               )}
-              {type === "delete" && (
-                <ReusableButton
-                  style={"add_button"}
-                  onClick={deletePostHandler}
-                >
-                  Confirm
-                </ReusableButton>
-              )}
             </div>
           </Form>
+        )}
+        {type === "delete" && (
+          <div className="d-flex justify-content-around pt-5">
+            <ReusableButton style={"cancel_button"} onClick={cancelHandler}>
+              Cancel
+            </ReusableButton>
+            <ReusableButton style={"add_button"} onClick={deletePostHandler}>
+              Confirm
+            </ReusableButton>
+          </div>
         )}
       </ModalBody>
     </Modal>
