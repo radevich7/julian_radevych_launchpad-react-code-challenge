@@ -54,7 +54,7 @@ const PostalLookUp = () => {
                 required
                 value={postalValue}
               />
-              <ReusableButton style={"postal_button"}>
+              <ReusableButton styles={"postal_button"}>
                 <span>
                   <FaSearch />
                 </span>

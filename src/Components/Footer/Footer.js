@@ -38,7 +38,7 @@ const Footer = () => {
             </p>
             <InputGroup>
               <Input type="email" className="footer_input" />
-              <ReusableButton style={"footer_button"}>Connect</ReusableButton>
+              <ReusableButton styles={"footer_button"}>Connect</ReusableButton>
             </InputGroup>
           </Col>
         </Row>

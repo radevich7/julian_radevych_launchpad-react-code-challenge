@@ -87,13 +87,13 @@ const Posts = () => {
               onChange={(e) => setSearchInputValue(e.target.value)}
               required
             />
-            <ReusableButton style={"search_button"}>Search</ReusableButton>
-            <ReusableButton style={"reset_button"} onClick={resetHandler}>
+            <ReusableButton styles={"search_button"}>Search</ReusableButton>
+            <ReusableButton styles={"reset_button"} onClick={resetHandler}>
               Reset
             </ReusableButton>
           </Form>
         ) : (
-          <ReusableButton style={"addPost_button"} onClick={addPostHandler}>
+          <ReusableButton styles={"addPost_button"} onClick={addPostHandler}>
             Add new post
           </ReusableButton>
         )}

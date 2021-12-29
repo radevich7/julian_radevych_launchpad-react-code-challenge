@@ -99,24 +99,24 @@ const ReusableModal = (props) => {
               onChange={(e) => setBody(e.target.value)}
             />
             <div className="d-flex justify-content-evenly pt-5">
-              <ReusableButton style={"cancel_button"} onClick={cancelHandler}>
+              <ReusableButton styles={"cancel_button"} onClick={cancelHandler}>
                 Cancel
               </ReusableButton>
               {type === "add" && (
-                <ReusableButton style={"add_button"}>Add</ReusableButton>
+                <ReusableButton styles={"add_button"}>Add</ReusableButton>
               )}
               {type === "update" && (
-                <ReusableButton style={"add_button"}>Update</ReusableButton>
+                <ReusableButton styles={"add_button"}>Update</ReusableButton>
               )}
             </div>
           </Form>
         )}
         {type === "delete" && (
           <div className="d-flex justify-content-around pt-5">
-            <ReusableButton style={"cancel_button"} onClick={cancelHandler}>
+            <ReusableButton styles={"cancel_button"} onClick={cancelHandler}>
               Cancel
             </ReusableButton>
-            <ReusableButton style={"add_button"} onClick={deletePostHandler}>
+            <ReusableButton styles={"add_button"} onClick={deletePostHandler}>
               Confirm
             </ReusableButton>
           </div>
